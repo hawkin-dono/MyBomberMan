@@ -13,7 +13,6 @@ public class GamePanel extends JPanel {
 	private Game _game;
 	
 	public GamePanel(Frame frame) {
-		//(1)
 		setLayout(new BorderLayout()); // Thiết lập bố cục cho panel là BorderLayout, một loại bố cục cho phép sắp xếp các thành phần theo hướng bắc, nam, đông, tây và trung tâm
 		setPreferredSize(new Dimension(Game.WIDTH * Game.SCALE, Game.HEIGHT * Game.SCALE)); // Thiết lập kích thước ưu tiên cho panel bằng cách nhân chiều rộng và chiều cao của game với tỷ lệ
 

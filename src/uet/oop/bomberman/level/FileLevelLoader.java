@@ -1,4 +1,4 @@
-package Level;
+package uet.oop.bomberman.level;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

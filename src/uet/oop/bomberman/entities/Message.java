@@ -1,6 +1,5 @@
 package uet.oop.bomberman.entities;
 
-import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Screen;
 
 import java.awt.*;

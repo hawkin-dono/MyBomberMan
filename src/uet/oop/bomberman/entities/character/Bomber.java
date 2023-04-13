@@ -1,21 +1,21 @@
 package uet.oop.bomberman.entities.character;
 
-import java.util.ArrayList;
 import uet.oop.bomberman.Board;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.bomb.Bomb;
-import uet.oop.bomberman.graphics.Screen;
-import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.input.Keyboard;
-
-import java.util.Iterator;
-import java.util.List;
 import uet.oop.bomberman.entities.LayeredEntity;
+import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
 import uet.oop.bomberman.entities.character.enemy.Enemy;
 import uet.oop.bomberman.entities.tile.item.Item;
+import uet.oop.bomberman.graphics.Screen;
+import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.input.Keyboard;
 import uet.oop.bomberman.level.Coordinates;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * bomber -> character, bomb,.... -> AnimatedEntitiy -> Entity implement irender
@@ -181,7 +181,7 @@ public class Bomber extends Character {
     public boolean canMove(double x, double y) {
         // TODO: kiểm tra có đối tượng tại vị trí chuẩn bị di chuyển đến và có thể di chuyển tới đó hay không
        for (int c = 0; c < 4; c++) { //kiem tra 4 goc cua player
-			double xt = ((_x + x) + c % 2 * 9) / Game.TILES_SIZE; //chia tile_size để chuyển sang tọa độ tile
+           double xt = ((_x + x) + c % 2 * 9) / Game.TILES_SIZE; //chia tile_size để chuyển sang tọa độ tile
            //double xt = ((_x + x) + 10) / Game.TILES_SIZE;
            double yt = ((_y + y) + c / 2 * 10 - 13) / Game.TILES_SIZE; //gia trị chuẩn nhất, được xác định qua nhiều test
 			
@@ -196,7 +196,7 @@ public class Bomber extends Character {
     }
 
     /**
-     * thực hiện di chuển sau khi check xem có thể di chuyển tới điểm cần đến ko
+     * thực hiện di chuyển sau khi check xem có thể di chuyển tới điểm cần đến ko
      */
     @Override
     public void move(double xa, double ya) {

@@ -1,4 +1,4 @@
-package Level;
+package uet.oop.bomberman.level;
 
 import uet.oop.bomberman.Board;
 import uet.oop.bomberman.exceptions.LoadLevelException;
