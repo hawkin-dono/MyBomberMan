@@ -119,6 +119,37 @@ public class Screen {
 		
 	}
 
+	public void drawWinGame(Graphics g, int points) {
+		g.setColor(Color.black);
+		g.fillRect(0, 0, getRealWidth(), getRealHeight());
+
+		Font font = new Font("Arial", Font.PLAIN, 20 * Game.SCALE);
+		g.setFont(font);
+		g.setColor(Color.white);
+		drawCenteredString("CONGLATURATION!!!", getRealWidth(), getRealHeight() - (Game.TILES_SIZE * 4) * Game.SCALE , g);
+
+		font = new Font("Arial", Font.PLAIN, 10 * Game.SCALE);
+		g.setFont(font);
+		g.setColor(Color.yellow);
+		drawCenteredString("POINTS: " + points, getRealWidth(), getRealHeight() - (Game.TILES_SIZE * 2) * Game.SCALE, g);
+
+		font = new Font("Arial", Font.PLAIN, 6 * Game.SCALE);
+		g.setFont(font);
+		g.setColor(Color.pink);
+		String thanks = "CẢM ƠN BẠN ĐÃ LÃNG PHÍ VÀI PHÚT CUỘC ĐỜI";
+		String thanks_plus = "CHO CHIẾC GAME VỚ VẨN NÀY";
+		String thanks_provip = "Xin chân thành cảm ơn";
+		String we = "Chúng tôi là";
+		String member = "Vũ Trung Hiếu - Hồ Lê Dương - Nguyễn Huy Hoàng";
+		drawCenteredString(thanks, getRealWidth(), getRealHeight(), g);
+		drawCenteredString(thanks_plus, getRealWidth(), getRealHeight() + (Game.TILES_SIZE * 2) * Game.SCALE, g);
+		drawCenteredString(thanks_provip, getRealWidth(), getRealHeight() + (Game.TILES_SIZE * 4) * Game.SCALE, g);
+		drawCenteredString(we, getRealWidth(), getRealHeight() + (Game.TILES_SIZE * 6) * Game.SCALE, g);
+		drawCenteredString(member, getRealWidth(), getRealHeight() + (Game.TILES_SIZE * 8) * Game.SCALE, g);
+
+	}
+
+
 	public void drawCenteredString(String s, int w, int h, Graphics g) {
 	    FontMetrics fm = g.getFontMetrics();
 	    int x = (w - fm.stringWidth(s)) / 2;
