@@ -82,9 +82,9 @@ public class Board implements IRender {
 	}
 	
 	public void nextLevel() {
-                Game.setBombRadius(1);
-                Game.setBombRate(1);
-                Game.setBomberSpeed(1.0);
+		Game.setBombRadius(1);
+		Game.setBombRate(1);
+		Game.setBomberSpeed(1.0);
 		loadLevel(_levelLoader.getLevel() + 1);
 	}
 	
@@ -127,7 +127,7 @@ public class Board implements IRender {
 		
 		return total == 0;
 	}
-	
+
 	public void drawScreen(Graphics g) {
 		switch (_screenToShow) {
 			case 1:
@@ -139,6 +139,8 @@ public class Board implements IRender {
 			case 3:
 				_screen.drawPaused(g);
 				break;
+			case 4:
+				_screen.drawWinGame(g, _points);
 		}
 	}
 	
