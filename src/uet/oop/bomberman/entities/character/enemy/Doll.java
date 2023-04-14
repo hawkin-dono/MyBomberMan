@@ -11,14 +11,13 @@ import uet.oop.bomberman.graphics.Sprite;
 
 /**
  *
- * @author TUNG318
  */
 public class Doll extends Enemy{
 
     public Doll(int x, int y, Board board) {
-        super(x, y, board, Sprite.balloom_dead, 0.8, 100);
+        super(x, y, board, Sprite.doll_dead, 0.8, 100);
 
-        _sprite = Sprite.balloom_left1;
+        _sprite = Sprite.doll_left1;
 
         _ai = new AIMedium(_board.getBomber(), this);
         _direction = _ai.calculateDirection();

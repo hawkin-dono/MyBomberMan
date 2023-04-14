@@ -70,7 +70,7 @@ public abstract class Enemy extends Character {
 				
 		}
 			
-		screen.renderEntity((int)_x, (int)_y - _sprite.SIZE, this);
+		screen.renderEntity((int)_x, (int)_y - _sprite.getSize(), this);
 	}
 	
 	@Override
