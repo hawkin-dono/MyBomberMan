@@ -26,44 +26,46 @@ public class Board implements IRender {
 	protected Game _game;
 	protected Keyboard _input;
 	protected Screen _screen;
-	private int maxLevel = 2;
+	
 	public Entity[] _entities;
 	public List<Character> _characters = new ArrayList<>();
 	protected List<Bomb> _bombs = new ArrayList<>();
 	private List<Message> _messages = new ArrayList<>();
 	
-	private int _screenToShow = -1; //1:endgame, 2:changelevel, 3:paused
-	
-	private int _time = Game.TIME;
-	private int _points = Game.POINTS;
-	
+	private int _screenToShow = -1; //1:endgame, 2:changelevel, 3:paused, hiển thị màn hình kết thúc trò chơi, màn hình chuyển màn, màn hình tạm dừng trò chơi
+
+	private int _time = Game.TIME; // thời gian
+	private int _points = Game.POINTS; // số điểm
+
 	public Board(Game game, Keyboard input, Screen screen) {
 		_game = game;
 		_input = input;
 		_screen = screen;
-		
-		loadLevel(1); //start in level 1
-	}
-	
-	@Override
-	public void update() {
-		if( _game.isPaused() ) return;
-		
-		updateEntities();
-		updateCharacters();
-		updateBombs();
-		updateMessages();
-		detectEndGame();
-		
-		for (int i = 0; i < _characters.size(); i++) {
-			Character a = _characters.get(i);
-			if(a.isRemoved()) _characters.remove(i);
-		}
+
+		loadLevel(1); // bắt đầu từ màn 1
 	}
 
 	@Override
+	public void update() {
+		if( _game.isPaused() ) return; // nếu trò chơi tạm dừng thì không làm gì
+
+		updateEntities(); // cập nhật bot
+		updateCharacters(); // cập nhật nhân vật
+		updateBombs(); // cập nhật bom
+		updateMessages(); // cập nhật thông báo
+		detectEndGame(); // kiểm tra kết thúc trò chơi
+
+		for (int i = 0; i < _characters.size(); i++) {
+			Character a = _characters.get(i);
+			if(a.isRemoved()) _characters.remove(i); // nếu nhân vật đã bị xóa thì loại bỏ khỏi danh sách
+		}
+	}
+
+
+	@Override
+	// hàm render
 	public void render(Screen screen) {
-		if( _game.isPaused() ) return;
+		if( _game.isPaused() ) return;// nếu trò chơi đang tạm dừng thì không hiển thị
 		
 		//only render the visible part of screen
 		int x0 = Screen.xOffset >> 4; //tile precision, -> left X
@@ -79,15 +81,18 @@ public class Board implements IRender {
 		
 		renderBombs(screen);
 		renderCharacter(screen);
+		
 	}
 	
+	//Hàm nextLevel thiết lập các thông số mới cho ván mới và tải level mới
 	public void nextLevel() {
-		Game.setBombRadius(1);
-		Game.setBombRate(1);
-		Game.setBomberSpeed(1.0);
+                Game.setBombRadius(1);
+                Game.setBombRate(1);
+                Game.setBomberSpeed(1.0);
 		loadLevel(_levelLoader.getLevel() + 1);
 	}
 	
+	//Hàm loadLevel tải level mới và reset thông số
 	public void loadLevel(int level) {
 		_time = Game.TIME;
 		_screenToShow = 2;
@@ -98,32 +103,25 @@ public class Board implements IRender {
 		_messages.clear();
 		
 		try {
-			_levelLoader = new FileLevelLoader(this, level);
-			_entities = new Entity[_levelLoader.getHeight() * _levelLoader.getWidth()];
+			_levelLoader = new FileLevelLoader(this, level); //tải level mới
+			_entities = new Entity[_levelLoader.getHeight() * _levelLoader.getWidth()]; 
+			//khởi tạo các bot
 			
-			_levelLoader.createEntities();
+			_levelLoader.createEntities(); //tạo các bot từ file level
 		} catch (LoadLevelException e) {
-			endGame();
+			endGame(); //nếu lỗi thì kết thúc trò chơi
 		}
 	}
 	
+	//Hàm detectEndGame kiểm tra thời gian và kết thúc trò chơi nếu hết thời gian
 	protected void detectEndGame() {
-		if(_time <= 0) {
+		if(_time <= 0)
 			endGame();
-		}
-		else if(_levelLoader.getLevel() == maxLevel) {
-			winGame();
-		}
 	}
 	
+	//hàm kết thúc
 	public void endGame() {
 		_screenToShow = 1;
-		_game.resetScreenDelay();
-		_game.pause();
-	}
-
-	public void winGame() {
-		_screenToShow = 4;
 		_game.resetScreenDelay();
 		_game.pause();
 	}
@@ -137,7 +135,8 @@ public class Board implements IRender {
 		
 		return total == 0;
 	}
-
+	
+	//vẽ màn hình, tùy vào giá trị của _screenToShow sẽ vẽ màn hình kết thúc game,màn hình chuyển đổi level hoặc màn hình tạm dừng.
 	public void drawScreen(Graphics g) {
 		switch (_screenToShow) {
 			case 1:
@@ -149,11 +148,10 @@ public class Board implements IRender {
 			case 3:
 				_screen.drawPaused(g);
 				break;
-			case 4:
-				_screen.drawWinGame(g, _points);
 		}
 	}
 	
+	//lấy đối tượng tại vị trí (x, y) trên màn hình, bao gồm các đối tượng FlameSegment, Bomb, Character và Entity.
 	public Entity getEntity(double x, double y, Character m) {
 		
 		Entity res = null;
@@ -175,11 +173,8 @@ public class Board implements IRender {
 	public List<Bomb> getBombs() {
 		return _bombs;
 	}
-
-	/**
-	 * ktra tại vị trí (x, y) có bomb không
-	 *
-	 */
+	
+	//trả về Bomb tại vị trí (x, y) nếu có.
 	public Bomb getBombAt(double x, double y) {
 		Iterator<Bomb> bs = _bombs.iterator();
 		Bomb b;
@@ -188,25 +183,21 @@ public class Board implements IRender {
 			if(b.getX() == (int)x && b.getY() == (int)y)
 				return b;
 		}
+		
 		return null;
-
 	}
 
-
-	/**
-	 * @return bomber.
-	 */
 	public Bomber getBomber() {
 		Iterator<Character> itr = _characters.iterator();
-
+		
 		Character cur;
 		while(itr.hasNext()) {
 			cur = itr.next();
-
+			
 			if(cur instanceof Bomber)
 				return (Bomber) cur;
 		}
-
+		
 		return null;
 	}
 
