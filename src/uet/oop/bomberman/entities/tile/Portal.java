@@ -4,6 +4,7 @@ import uet.oop.bomberman.Board;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.character.Bomber;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Sound;
 
 public class Portal extends Tile {
 	protected Board _board;
@@ -25,7 +26,7 @@ public class Portal extends Tile {
 			if(e.getXTile() == getX() && e.getYTile() == getY()) {
 				if(_board.detectNoEnemies()){
 					_board.nextLevel();
-					//Sound.play("CRYST_UP");
+					Sound.playSound("res/sound/CRYST_UP.wav",5500);
 				}
 			}
 			
