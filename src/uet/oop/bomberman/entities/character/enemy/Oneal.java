@@ -5,18 +5,16 @@ import uet.oop.bomberman.Board;
 import uet.oop.bomberman.entities.character.enemy.ai.AILow;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.util.Random;
-
 public class Oneal extends Enemy {
-	private Random random = new Random();
+	//private Random random = new Random();
 	public Oneal(int x, int y, Board board) {
-		super(x, y, board, Sprite.oneal_dead, 0.8 , 100);
+		super(x, y, board, Sprite.balloom_dead, 0.8 , 100);
 		
-		_sprite = Sprite.oneal_left1;
+		_sprite = Sprite.balloom_left1;
 		
 		_ai = new AILow();
 		_direction = _ai.calculateDirection();
-		//this._speed += random.nextDouble()/2;
+                //this._speed += random.nextDouble()/2;
                 
 	}
 	
