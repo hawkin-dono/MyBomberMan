@@ -11,6 +11,7 @@ import uet.oop.bomberman.entities.character.enemy.ai.AI;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
+import uet.oop.bomberman.Sound;
 
 import java.awt.*;
 
@@ -148,7 +149,7 @@ public abstract class Enemy extends Character {
 
 		Message msg = new Message("+" + _points, getXMessage(), getYMessage(), 2, Color.white, 14);
 		_board.addMessage(msg);
-                //Sound.play("AA126_11");
+                Sound.playSound("res/sound/AA126_11.wav",5500);
 	}
 	
 	
