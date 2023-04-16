@@ -9,7 +9,7 @@ import uet.oop.bomberman.entities.character.Character;
 import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.level.Coordinates;
-
+import uet.oop.bomberman.Sound;
 public class Bomb extends AnimatedEntitiy {
 
 	protected double _timeToExplode = 120; //2 seconds - thoi gian phat no
@@ -88,7 +88,7 @@ public class Bomb extends AnimatedEntitiy {
                 for (int i = 0; i < _flames.length; i++) {
                     _flames[i] = new Flame((int) _x, (int) _y, i, Game.getBombRadius(), _board);
                 }
-                //Sound.play("BOM_11_M");
+                Sound.playSound("res/sound/BOM_11_M.wav",5500);
 	}
         public void time_explode() {
 		_timeToExplode = 0;
