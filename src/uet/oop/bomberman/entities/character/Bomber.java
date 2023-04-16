@@ -12,7 +12,7 @@ import uet.oop.bomberman.graphics.Screen;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 import uet.oop.bomberman.level.Coordinates;
-
+import uet.oop.bomberman.Sound;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -113,7 +113,7 @@ public class Bomber extends Character {
         // TODO: thực hiện tạo đối tượng bom, đặt vào vị trí (x, y)
         Bomb b = new Bomb(x, y, _board);
 	_board.addBomb(b);
-        //Sound.play("BOM_SET");
+        Sound.playSound("res/sound/BOM_SET.wav",5500);
     }
 
     /**
@@ -141,7 +141,7 @@ public class Bomber extends Character {
     public void kill() {
         if (!_alive) return;
         _alive = false;
-        //Sound.play("endgame3");
+        Sound.playSound("res/sound/endgame3.wav",5500);
     }
 
     /**
