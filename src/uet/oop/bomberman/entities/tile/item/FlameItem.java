@@ -1,5 +1,6 @@
 package uet.oop.bomberman.entities.tile.item;
 
+import uet.oop.bomberman.Sound;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.character.Bomber;
@@ -22,7 +23,7 @@ public class FlameItem extends Item {
 		// TODO: xử lý Bomber ăn 
             if (e instanceof Bomber) {
                 
-                //Sound.play("Item");
+                Sound.playSound("res/sound/Item.wav",5500);
 				// tăng bán kính bomb
                 Game.addBombRadius(1);
                 remove();
