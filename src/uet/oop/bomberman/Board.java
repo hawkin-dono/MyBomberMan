@@ -26,7 +26,7 @@ public class Board implements IRender {
 	protected Game _game;
 	protected Keyboard _input;
 	protected Screen _screen;
-	
+	private int maxLevel = 2;
 	public Entity[] _entities;
 	public List<Character> _characters = new ArrayList<>();
 	protected List<Bomb> _bombs = new ArrayList<>();
@@ -108,12 +108,22 @@ public class Board implements IRender {
 	}
 	
 	protected void detectEndGame() {
-		if(_time <= 0)
+		if(_time <= 0) {
 			endGame();
+		}
+		else if(_levelLoader.getLevel() == maxLevel) {
+			winGame();
+		}
 	}
 	
 	public void endGame() {
 		_screenToShow = 1;
+		_game.resetScreenDelay();
+		_game.pause();
+	}
+
+	public void winGame() {
+		_screenToShow = 4;
 		_game.resetScreenDelay();
 		_game.pause();
 	}

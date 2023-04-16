@@ -48,16 +48,16 @@ public class FileLevelLoader extends LevelLoader {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    String[] arrays = list.get(0).trim().split(" "); // tách các phần tử của dòng đầu tiên trong danh sách để lấy thông tin về màn chơi
-    _level = Integer.parseInt(arrays[0]); // gán giá trị cấp độ cho biến _level
-    _height = Integer.parseInt(arrays[1]); // gán giá trị chiều cao của bản đồ cho biến _height
-    _width = Integer.parseInt(arrays[2]); // gán giá trị chiều rộng của bản đồ cho biến _width
-    _map = new char[_height][_width]; // khởi tạo bản đồ game với kích thước chiều cao và chiều rộng tương ứng
-    for (int i = 0; i < _height; i++) { // duyệt qua từng hàng của bản đồ
-        for (int j = 0; j < _width; j++) { // duyệt qua từng cột của bản đồ
-            _map[i][j] = list.get(i + 1).charAt(j); // gán giá trị ký tự tương ứng từ danh sách vào bản đồ game
+        String[] arrays = list.get(0).trim().split(" "); // tách các phần tử của dòng đầu tiên trong danh sách để lấy thông tin về màn chơi
+        _level = Integer.parseInt(arrays[0]); // gán giá trị cấp độ cho biến _level
+        _height = Integer.parseInt(arrays[1]); // gán giá trị chiều cao của bản đồ cho biến _height
+        _width = Integer.parseInt(arrays[2]); // gán giá trị chiều rộng của bản đồ cho biến _width
+        _map = new char[_height][_width]; // khởi tạo bản đồ game với kích thước chiều cao và chiều rộng tương ứng
+        for (int i = 0; i < _height; i++) { // duyệt qua từng hàng của bản đồ
+            for (int j = 0; j < _width; j++) { // duyệt qua từng cột của bản đồ
+                _map[i][j] = list.get(i + 1).charAt(j); // gán giá trị ký tự tương ứng từ danh sách vào bản đồ game
+            }
         }
-    }
     }
 
 
