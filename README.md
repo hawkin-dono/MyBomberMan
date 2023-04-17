@@ -190,9 +190,9 @@ Các nhân vật [**Ovape**](http://bomberman.wikia.com/wiki/Ovape), [**Pontan**
 
 Thay vì lấy input từ người dùng nhập vào, bạn sẽ cài đặt thuật toán để Bomberman có thể tự chơi. Tham khảo cách sử dụng AI của **Enemy** để cài đặt. Bạn có thể cài đặt tùy ý phần
 
-9. Xử lý hiệu ứng âm thanh
+9. Hiệu ứng âm thanh
 
-Hiện tại game chưa thiết kế để đưa âm thanh vào. Bạn có thể thêm âm thanh vào trong game, bao gồm âm thanh nền và âm thanh của các event trong game (bom nổ, nhân vật chết, thắng cuộc, ăn item,...). Lưu ý âm thanh nền với event là độc lập với nhau, tức việc phát âm thanh sự kiện không ảnh hưởng đến âm thanh nền.
+Bao gồm âm thanh nền và âm thanh của các event trong game (bom nổ, nhân vật chết, thắng cuộc, ăn item,...).Âm thanh nền với event là độc lập với nhau, tức việc phát âm thanh sự kiện không ảnh hưởng đến âm thanh nền.
 
 10. Phát triển hệ thống client-server để có thể cùng chơi qua mạng LAN hoặc Internet.
 
