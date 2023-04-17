@@ -6,6 +6,5 @@ public class BombermanGame {
 	public static void main(String[] args) {
 		Sound.playSound("res/sound/soundtrack.wav",1000);
 		new Frame();
-		Sound.playSound("D:\\code\\game java\\MyBomberMan\\res\\sound\\soundtrack.wav", 2000);
 	}
 }
