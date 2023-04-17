@@ -26,7 +26,7 @@ public class Board implements IRender {
 	protected Game _game;
 	protected Keyboard _input;
 	protected Screen _screen;
-	
+	private int maxLevel = 2;
 	public Entity[] _entities;
 	public List<Character> _characters = new ArrayList<>();
 	protected List<Bomb> _bombs = new ArrayList<>();
@@ -115,8 +115,12 @@ public class Board implements IRender {
 	
 	//Hàm detectEndGame kiểm tra thời gian và kết thúc trò chơi nếu hết thời gian
 	protected void detectEndGame() {
-		if(_time <= 0)
+		if(_time <= 0) {
 			endGame();
+		}
+		else if(_levelLoader.getLevel() == maxLevel) {
+			winGame();
+		}
 	}
 	
 	//hàm kết thúc
@@ -125,7 +129,12 @@ public class Board implements IRender {
 		_game.resetScreenDelay();
 		_game.pause();
 	}
-	
+
+	public void winGame() {
+		_screenToShow = 4;
+		_game.resetScreenDelay();
+		_game.pause();
+	}
 	public boolean detectNoEnemies() {// phat hien enemies
 		int total = 0;
 		for (int i = 0; i < _characters.size(); i++) {
@@ -148,6 +157,8 @@ public class Board implements IRender {
 			case 3:
 				_screen.drawPaused(g);
 				break;
+			case 4:
+				_screen.drawWinGame(g, _points);
 		}
 	}
 	
